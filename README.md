@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📚 Study Dash
+#  Study Dash
 
 **Your personal AI-powered study companion.**
 Upload anything. Learn everything.
@@ -24,29 +24,29 @@ No more manual note-taking. No more re-reading the same paragraph five times. Ju
 
 ---
 
-## ✨ Features
+##  Features
 
-**📄 Multi-format ingestion**
+**Multi-format ingestion**
 Upload PDFs, paste YouTube video links, or share article URLs. Study Dash handles parsing and content extraction automatically.
 
-**🧠 AI-powered summaries**
+**AI-powered summaries**
 Get concise, structured summaries of any material — key points, main arguments, and takeaways surfaced in seconds.
 
-**🃏 Smart flashcards**
+**Smart flashcards**
 Automatically generated Q&A flashcard decks from your content. Review and test yourself without having to write a single card manually.
 
-**📝 Auto-generated quizzes**
+**Auto-generated quizzes**
 Multiple-choice and open-ended quizzes created directly from your uploaded material, so you can assess your understanding on the fly.
 
-**🗺️ Concept maps**
+**Concept maps**
 Visual representations of how ideas connect within a document, making it easy to understand structure and relationships at a glance.
 
-**🔐 Secure personal workspace**
+**Secure personal workspace**
 All your content and study sets are private to you, backed by Supabase Auth and Row Level Security.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -59,7 +59,7 @@ All your content and study sets are private to you, backed by Supabase Auth and 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -110,7 +110,7 @@ Open [http://localhost:3000](http://localhost:3000) to see it running.
 
 ---
 
-## 🗄️ Database Setup
+## Database Setup
 
 Run the schema file in your Supabase project's SQL editor:
 
@@ -122,7 +122,7 @@ This sets up the necessary tables for storing documents, flashcard sets, quizzes
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 Study Dash is designed to deploy on [Vercel](https://vercel.com/) with zero configuration:
 
@@ -136,7 +136,7 @@ Vercel will automatically handle builds and serverless functions.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ai-dashboard/
@@ -155,7 +155,7 @@ ai-dashboard/
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to open issues, suggest features, or submit pull requests.
 
@@ -167,7 +167,7 @@ Contributions are welcome! Feel free to open issues, suggest features, or submit
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](./LICENSE).
 
