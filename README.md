@@ -1,6 +1,6 @@
 <div align="center">
 
-#  Study Dash
+#  Synthea
 
 **Your personal AI-powered study companion.**
 Upload anything. Learn everything.
@@ -16,9 +16,9 @@ Upload anything. Learn everything.
 
 ---
 
-## What is Study Dash?
+## What is Synthea?
 
-Study Dash transforms any learning material into interactive study tools — instantly. Drop in a PDF, paste a YouTube link, or share an article URL, and within seconds you get AI-generated summaries, flashcards, quizzes, and concept maps tailored to that content.
+Synthea transforms any learning material into interactive study tools — instantly. Drop in a PDF, paste a YouTube link, or share an article URL, and within seconds you get AI-generated summaries, flashcards, quizzes, and concept maps tailored to that content.
 
 No more manual note-taking. No more re-reading the same paragraph five times. Just upload and study smarter.
 
@@ -27,7 +27,7 @@ No more manual note-taking. No more re-reading the same paragraph five times. Ju
 ##  Features
 
 **Multi-format ingestion**
-Upload PDFs, paste YouTube video links, or share article URLs. Study Dash handles parsing and content extraction automatically.
+Upload PDFs, paste YouTube video links, or share article URLs. Synthea handles parsing and content extraction automatically.
 
 **AI-powered summaries**
 Get concise, structured summaries of any material — key points, main arguments, and takeaways surfaced in seconds.
@@ -123,8 +123,7 @@ This sets up the necessary tables for storing documents, flashcard sets, quizzes
 ---
 
 ## Deployment
-
-Study Dash is designed to deploy on [Vercel](https://vercel.com/) with zero configuration:
+Synthea is designed to deploy on [Vercel](https://vercel.com/) with zero configuration:
 
 1. Push your fork to GitHub
 2. Import the project in Vercel
