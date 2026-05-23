@@ -2,12 +2,10 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { isEmailAllowed } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { BrandMark } from '@/components/brand-mark'
 import { Loader2 } from 'lucide-react'
 
@@ -22,12 +20,6 @@ export default function LoginPage() {
     e.preventDefault()
     setError(null)
     setLoading(true)
-
-    if (!isEmailAllowed(email)) {
-      setError('This app is restricted to a single account.')
-      setLoading(false)
-      return
-    }
 
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({
@@ -97,14 +89,6 @@ export default function LoginPage() {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="justify-center">
-          <p className="text-sm text-muted-foreground">
-            Don&apos;t have an account?{' '}
-            <Link href="/auth/sign-up" className="font-medium text-primary hover:underline">
-              Sign up
-            </Link>
-          </p>
-        </CardFooter>
       </Card>
     </main>
   )

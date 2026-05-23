@@ -15,8 +15,9 @@ const studyOutputSchema = z.object({
     z.object({
       term: z.string().describe('The key term or concept'),
       definition: z.string().describe('A clear, concise definition'),
+      category: z.string().describe('A short category name for this concept. Group concepts into 2-4 meaningful categories — either by topic area (e.g. "Networking", "Security", "Data Structures") or by complexity level ("Fundamentals", "Core Concepts", "Advanced") — whichever makes more sense for this content'),
     })
-  ).describe('5-10 key concepts from the content'),
+  ).describe('8-15 key concepts from the content, each assigned to a category'),
   flashcards: z.array(
     z.object({
       id: z.string(),

@@ -10,6 +10,7 @@ export interface Session {
 export interface KeyConcept {
   term: string
   definition: string
+  category?: string
 }
 
 export interface Flashcard {

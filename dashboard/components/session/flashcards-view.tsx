@@ -38,8 +38,7 @@ export function FlashcardsView({ flashcards }: FlashcardsViewProps) {
   }
 
   const handleShuffle = () => {
-    const shuffled = [...cards].sort(() => Math.random() - 0.5)
-    setCards(shuffled)
+    setCards([...cards].sort(() => Math.random() - 0.5))
     setCurrentIndex(0)
     setIsFlipped(false)
   }
@@ -54,65 +53,67 @@ export function FlashcardsView({ flashcards }: FlashcardsViewProps) {
     <div className="flex flex-col items-center gap-6">
       <div className="flex items-center gap-4">
         <span className="text-sm text-muted-foreground">
-          Card {currentIndex + 1} of {cards.length}
+          {currentIndex + 1} / {cards.length}
         </span>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" onClick={handleShuffle} title="Shuffle cards">
+          <Button variant="outline" size="icon" onClick={handleShuffle} title="Shuffle">
             <Shuffle className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="icon" onClick={handleReset} title="Reset order">
+          <Button variant="outline" size="icon" onClick={handleReset} title="Reset">
             <RotateCcw className="h-4 w-4" />
           </Button>
         </div>
       </div>
 
-      <div className="w-full max-w-2xl perspective-1000">
+      {/* Perspective must sit on a plain div, not on the rotating element */}
+      <div className="w-full max-w-2xl" style={{ perspective: '1200px' }}>
         <button
           onClick={() => setIsFlipped(!isFlipped)}
-          className="group relative h-64 w-full cursor-pointer sm:h-80"
-          style={{ transformStyle: 'preserve-3d' }}
+          className="relative h-64 w-full cursor-pointer sm:h-72"
+          style={{
+            transformStyle: 'preserve-3d',
+            transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          }}
         >
-          <div
-            className={`absolute inset-0 transition-transform duration-500 ${
-              isFlipped ? '[transform:rotateY(180deg)]' : ''
-            }`}
-            style={{ transformStyle: 'preserve-3d' }}
+          {/* Front face */}
+          <Card
+            className="absolute inset-0 flex items-center justify-center p-6"
+            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
           >
-            {/* Front */}
-            <Card
-              className="absolute inset-0 flex items-center justify-center p-6 backface-hidden"
-              style={{ backfaceVisibility: 'hidden' }}
-            >
-              <CardContent className="flex flex-col items-center justify-center p-0 text-center">
-                <span className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  Question
-                </span>
-                <p className="text-lg font-medium leading-relaxed sm:text-xl">{currentCard.front}</p>
-                <span className="mt-4 text-xs text-muted-foreground">Click to reveal answer</span>
-              </CardContent>
-            </Card>
+            <CardContent className="flex flex-col items-center justify-center p-0 text-center">
+              <span className="mb-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                Question
+              </span>
+              <p className="text-lg font-medium leading-relaxed sm:text-xl">{currentCard.front}</p>
+              <span className="mt-6 text-xs text-muted-foreground/60">tap to flip</span>
+            </CardContent>
+          </Card>
 
-            {/* Back */}
-            <Card
-              className="absolute inset-0 flex items-center justify-center bg-primary/5 p-6 [transform:rotateY(180deg)]"
-              style={{ backfaceVisibility: 'hidden' }}
-            >
-              <CardContent className="flex flex-col items-center justify-center p-0 text-center">
-                <span className="mb-2 text-xs font-medium uppercase tracking-wide text-primary">
-                  Answer
-                </span>
-                <p className="text-lg leading-relaxed sm:text-xl">{currentCard.back}</p>
-                <span className="mt-4 text-xs text-muted-foreground">Click to see question</span>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Back face — pre-rotated 180° so it faces away until the button flips */}
+          <Card
+            className="absolute inset-0 flex items-center justify-center border-primary/20 bg-primary/5 p-6"
+            style={{
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg)',
+            }}
+          >
+            <CardContent className="flex flex-col items-center justify-center p-0 text-center">
+              <span className="mb-3 text-xs font-medium uppercase tracking-widest text-primary/70">
+                Answer
+              </span>
+              <p className="text-lg leading-relaxed sm:text-xl">{currentCard.back}</p>
+              <span className="mt-6 text-xs text-muted-foreground/60">tap to flip back</span>
+            </CardContent>
+          </Card>
         </button>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <Button variant="outline" onClick={handlePrev} disabled={cards.length <= 1}>
           <ChevronLeft className="h-4 w-4" />
-          Previous
+          Prev
         </Button>
         <Button onClick={handleNext} disabled={cards.length <= 1}>
           Next
@@ -120,17 +121,13 @@ export function FlashcardsView({ flashcards }: FlashcardsViewProps) {
         </Button>
       </div>
 
-      {/* Progress dots */}
       <div className="flex flex-wrap justify-center gap-1.5">
         {cards.map((_, index) => (
           <button
             key={index}
-            onClick={() => {
-              setCurrentIndex(index)
-              setIsFlipped(false)
-            }}
-            className={`h-2 w-2 rounded-full transition-colors ${
-              index === currentIndex ? 'bg-primary' : 'bg-muted hover:bg-muted-foreground/50'
+            onClick={() => { setCurrentIndex(index); setIsFlipped(false) }}
+            className={`h-1.5 w-1.5 rounded-full transition-colors ${
+              index === currentIndex ? 'bg-foreground' : 'bg-border hover:bg-muted-foreground/50'
             }`}
           />
         ))}
